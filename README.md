@@ -43,9 +43,7 @@ The system receives an image from a Telegram bot, processes it through an AI Vis
 ## 🛠 Setup & Installation
 
 ### 1️⃣ Import Workflow
-- Open **n8n**  
-- Click **Import**  
-- Upload `Telegram Photo.json`
+Import workflow.json into your n8n editor.
 
 ### 2️⃣ Configure Credentials
 - Inside n8n:
@@ -54,4 +52,5 @@ The system receives an image from a Telegram bot, processes it through an AI Vis
 
 ### 3️⃣ Activate the Workflow
 Send any picture to your Telegram bot — the caption returns instantly.
+
 
