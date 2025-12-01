@@ -6,6 +6,7 @@ The system receives an image from a Telegram bot, processes it through an AI Vis
 ## 🏗 System Architecture
 
 **Tech Stack:** n8n, Telegram Bot API, OpenAI Vision (GPT-4o mini), Base64 Image Processing.
+![System Architecture](architecture.jpg)
 
 ## 🔄 Workflow Architecture
 
@@ -52,5 +53,6 @@ Import workflow.json into your n8n editor.
 
 ### 3️⃣ Activate the Workflow
 Send any picture to your Telegram bot — the caption returns instantly.
+
 
 
