@@ -69,4 +69,5 @@ Add your OPENAI_API_KEY
 
 3️⃣ Activate the Workflow
 
+
 Send any picture to your Telegram bot — the caption returns instantly.
