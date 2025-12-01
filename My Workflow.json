@@ -1,0 +1,148 @@
+{
+  "name": "Telegram Photo",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "39359a85-31ba-44ec-89dd-8c0bc7c3adc8",
+      "name": "Telegram Trigger",
+      "webhookId": "769c7e5d-3d6a-43bb-8a25-49a1c5cc3d0c",
+      "credentials": {
+        "telegramApi": {
+          "id": "TRHyRKUhZdUNSt1F",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{$json[\"message\"][\"photo\"].slice(-1)[0].file_id}}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "aa6ec738-97df-4b82-b2cf-73ca651efec7",
+      "name": "Get a file",
+      "webhookId": "7dc9a0f2-5763-4787-b199-6299a1022a06",
+      "credentials": {
+        "telegramApi": {
+          "id": "TRHyRKUhZdUNSt1F",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "You are a creative caption writer for social media. Given the image, return 3 caption options in JSON:\n1) short — 5–8 words\n2) medium — 10–15 words\n3) witty — short sentence + one hashtag\nAlso return a single best caption choice field.\n\nRespond ONLY as valid JSON:\n{\n  \"short\": \"...\",\n  \"medium\": \"...\",\n  \"witty\": \"...\",\n  \"best\": \"...\"\n}\n",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "79fa15cc-65aa-4fb5-8181-2e0227b31d64",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "dqxIRnqvLx1JJAxy",
+          "name": "OpenAi account 4"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=5235699395",
+        "text": "=Okay Good Photo\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        0
+      ],
+      "id": "4c998733-a2e7-4de0-91e1-b1e580b19051",
+      "name": "Send a text message",
+      "webhookId": "04ca912e-ceee-4d55-877a-fe28baf1c9e2",
+      "credentials": {
+        "telegramApi": {
+          "id": "TRHyRKUhZdUNSt1F",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c8dce74f-5e26-486d-8231-cd66a29559af",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "28177ac1b6dedda03e14fed08d4793158cac8182fea5fbbfa3d89855d274decd"
+  },
+  "id": "NsoBb08hMgeIvMKl",
+  "tags": []
+}
