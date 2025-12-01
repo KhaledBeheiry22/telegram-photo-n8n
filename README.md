@@ -1,4 +1,4 @@
-# 🤖 Telegram Photo → AI Caption Generator
+#  Telegram Photo → AI Caption Generator
 
 A lightweight automated workflow built with **n8n**, **Telegram Bot API**, and **OpenAI Vision**.  
 The system receives an image from a Telegram bot, processes it through an AI Vision model, and returns a creative caption instantly.
@@ -54,3 +54,4 @@ The system receives an image from a Telegram bot, processes it through an AI Vis
 
 ### 3️⃣ Activate the Workflow
 Send any picture to your Telegram bot — the caption returns instantly.
+
